@@ -26,6 +26,11 @@ git clone https://github.com/drmnk/feedback.git
 cd feedback
 cp .env.example .env
 # указать полный путь к sqlite базе в .env переменной DB_DATABASE
+php artisan key:generate
+
+composer install
+npm install
+npm run build
 php artisan migrate
 php artisan serve
 ```
