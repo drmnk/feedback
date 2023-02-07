@@ -59,11 +59,9 @@ php artisan serve
 
 Но я натолкнулся на хорошее и очень красивое определение от [Мартина Джо](https://martinjoo.dev):
 
-```
-Domain-Driven Design is a software development approach that tries to bring the business language and the source code as close as possible.
-
-To be a little bit more specific it achieves this by making every important "stuff" a first-class citizen.
-```
+> Domain-Driven Design is a software development approach that tries to bring the business language and the source code as close as possible.
+>
+> To be a little bit more specific it achieves this by making every important "stuff" a first-class citizen.
 
 То есть мы должны в разработке просто начать распоряжаться терминами бизнеса, а не терминами программистов. Создавать не только классы-"существительные", но и классы-"действия", описывающие бизнес-процессы типа "ОтгрузитьСоСклада", "УвеличитьСкидкуКлиента".
 
