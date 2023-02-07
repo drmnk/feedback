@@ -22,7 +22,7 @@
 ## Запуск
 
 ```
-git clone https://drmnk.github.com/drmnk/feedback.git
+git clone https://github.com/drmnk/feedback.git
 cd feedback
 cp .env.example .env
 # указать полный путь к sqlite базе в .env переменной DB_DATABASE
