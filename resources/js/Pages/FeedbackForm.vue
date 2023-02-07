@@ -1,4 +1,13 @@
 <template>
+    <!-- Alerts -->
+    <div v-if="$page.props.flash.message" class="absolute left-1/2 -translate-x-1/2 top-4 w-96 text-center p-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl shadow-xl">
+        {{ $page.props.flash.message }}
+    </div>
+
+    <div v-if="$page.props.flash.error" class="absolute left-1/2 -translate-x-1/2 top-4 w-96 text-center p-4 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-xl shadow-xl">
+        {{ $page.props.flash.error }}
+    </div>
+
     <!-- Main container -->
     <div class="flex h-screen justify-center items-center bg-yellow-50">
 

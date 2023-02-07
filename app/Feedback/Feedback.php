@@ -10,9 +10,8 @@ class Feedback
 {
     public static function store(FeedbackData $feedback, string $transportType, string $storeName)
     {
-        $transportName = __NAMESPACE__ . '\Transports' . ucfirst($transportType);
+        $transportName = __NAMESPACE__ . '\Transports\\' . ucfirst($transportType);
         $transport = new $transportName();
-        $transport->store($feedback, $storeName);
-        return true;
+        return $transport->store($feedback, $storeName);
     }
 }

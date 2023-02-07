@@ -15,12 +15,21 @@ class FeedbackController extends Controller
         return Inertia::render('FeedbackForm');
     }
 
-    /*
-    */
     public function submitFeedback(StoreFeedbackRequest $request)
     {
         $feedback = FeedbackData::fromRequest($request);
-        dd($feedback);
-        return redirect()->route('feedback.showForm');
+        $result = Feedback::store($feedback, 'database', 'sqlite');
+        $result = Feedback::store($feedback, 'file', 'feedbacks.json');
+        if ($result) {
+            return redirect()->route('feedback.showForm')->with(
+                'message',
+                'Заявка успешно отправлена, скоро с вами свяжутся'
+            );
+        }
+
+        return redirect()->route('feedback.showForm')->with(
+            'error',
+            'Ошибка при отправке заявки, сорри'
+        );
     }
 }

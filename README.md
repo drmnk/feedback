@@ -1,66 +1,67 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Форма обратной связи (отправки заявки)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Изображение](https://stately-cupcake-b0602a.netlify.app/feedback.png)
 
-## About Laravel
+## Тестовое задание для компании, разрабатывающей решения Call-To-Action и повышающей вовлечённость клиентов
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+> ### **Задача:** сделать форму обратной связи.
+>
+> -   При сохранении заявки использовать паттерн фабрика.
+> -   Реализовать структуру, чтобы можно было добавлять новые места для хранения заявок, например другая база данных или email.
+> -   Изначально реализовать сохранение в базу и в файл. Саму структуру базы можно не делать.
+> -   Поля: имя, телефон, само обращение. Валидация данных на бекенде.
+>
+> ### Что необходимо использовать
+>
+> -   PHP 7
+> -   Фреймворк Laravel или mvc фреймворк
+> -   ООП (для создания заявки и места для хранения заявки)
+> -   DDD для организации приложения (не обязательно)
+> -   Фреймворк Vue (обязательно)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Запуск
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```
+git clone https://drmnk.github.com/feedback.git
+cd feedback
+php artisan migrate
+php artisan serve
+```
 
-## Learning Laravel
+## Некоторые моменты
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Хранение данных и ООП
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Так как по факту мы не храним заявки, а "отправляем" их через некоторый транспорт (например, email, ведь точно не будет местом хранения) - то по фактй сквозной нумерации у нас не будет.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Однако в реальности же как-то их нужно было бы разделять между собой. Поэтому к заявкам добавляется UUID. Однако в той же почте он точно не понадобится. Возможно, вместо интерфейса (который сейчас очень куцый), лучше было бы создать родительский класс (который бы всё равно получился очень куцым сейчас)
 
-## Laravel Sponsors
+### 8 vs 7
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Так, ну буду честным сразу - _я немного срезал углы_. Я использовал PHP8 - только потому, что сейчас на Мак проблематично скачать PHP7 через homebrew (**он больше не поддерживается :/**), а в докер это паковать я немного заленился, всё же прекрасно работает через php artisan serve.
 
-### Premium Partners
+Но здесь из особенностей PHP8 используются только readonly свойства классов (для класса DTO) и собственно определение свойств в конструкторе. Ну и версия Ларавель 9-я, а с PHP7 мы бы просто установили 8-ю.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### DDD
 
-## Contributing
+Ещё небольшая оговорка - организация DDD. Тут, как бы, сколько людей, столько и мнений. Я не читал оригинальную книгу Эрика Эванса (но видел много мнений, что сейчас она уже немного устарела, особенно после появления ORM - не могу ничего сказать, прочитаю и скажу).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Но я натолкнулся на хорошее и очень красивое определение от [Мартина Джо](https://martinjoo.dev):
 
-## Code of Conduct
+```
+Domain-Driven Design is a software development approach that tries to bring the business language and the source code as close as possible.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+To be a little bit more specific it achieves this by making every important "stuff" a first-class citizen.
+```
 
-## Security Vulnerabilities
+То есть мы должны в разработке просто начать распоряжаться терминами бизнеса, а не терминами программистов. Создавать не только классы-"существительные", но и классы-"действия", описывающие бизнес-процессы типа "ОтгрузитьСоСклада", "УвеличитьСкидкуКлиента".
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Однако при этом надо не начать воевать с фреймворком. Так как у нас тут маленькая задача со всего одним, по факту, процессом - "отправить/сохранить заявку через некий канал связи", то не знаю, считается ли настоящим DDD всего один метод `Feedback::store`.
 
-## License
+Однако что точно мы можем применить из DDD-мира - это Data Transfer Objects. Не будем кидаться непонятным "массивом" между обработчиками, создадим один жёсткий класс, отвечающий только за перенос данных заявки.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Конечно, в реальном мире для приложения мы бы воспользовались скорее всего пакетом от Spatie, но получилось довольно мило.
+
+### Vue
+
+Ну а Вью прикручен с помощью [InertiaJS](https://inertiajs.com). Да здавствует `modern monolith`

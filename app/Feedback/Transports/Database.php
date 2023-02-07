@@ -15,5 +15,6 @@ class Database implements FeedbackTransportInterface
             'insert into feedbacks (id, name, email, body) values (?, ?, ?,?)',
             [Str::uuid(), ...$feedback->asArray()]
         );
+        return $result;
     }
 }
