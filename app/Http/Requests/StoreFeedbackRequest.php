@@ -6,13 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreFeedbackRequest extends FormRequest
 {
-
     public function rules()
     {
         return [
             'name' => 'required',
             'email' => 'email|required',
-            'body' => ''
+            'body' => '',
             // А почему не проверяем собственно наличие заявки?
             // А потому что клиенты - часто люди занятые и им проще заполнить
             // своё имя и контактную информацию, и подождать, пока тебе перезвонят

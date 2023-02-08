@@ -2,10 +2,9 @@
 
 namespace App\Feedback\Transports;
 
+use App\Feedback\FeedbackData;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use App\Feedback\FeedbackTrasportInterface;
-use App\Feedback\FeedbackData;
 
 class Database implements FeedbackTransportInterface
 {
@@ -15,6 +14,7 @@ class Database implements FeedbackTransportInterface
             'insert into feedbacks (id, name, email, body) values (?, ?, ?,?)',
             [Str::uuid(), ...$feedback->asArray()]
         );
+
         return $result;
     }
 }

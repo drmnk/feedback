@@ -2,9 +2,9 @@
 
 namespace App\Feedback\Transports;
 
+use App\Feedback\FeedbackData;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\Feedback\FeedbackData;
 
 class File implements FeedbackTransportInterface
 {
@@ -14,9 +14,10 @@ class File implements FeedbackTransportInterface
             'id' => Str::uuid(),
             'name' => $feedback->name,
             'email' => $feedback->email,
-            'body' => $feedback->body
+            'body' => $feedback->body,
         ]);
         $result = Storage::append($storeName, $feedback);
+
         return $result;
     }
 }

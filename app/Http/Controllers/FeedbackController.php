@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Feedback\Feedback;
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreFeedbackRequest;
 use App\Feedback\FeedbackData;
+use App\Http\Requests\StoreFeedbackRequest;
 use Inertia\Inertia;
 
 class FeedbackController extends Controller
